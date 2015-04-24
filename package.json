@@ -1,0 +1,24 @@
+{
+  "name": "react-native-url-handler",
+  "version": "0.0.1",
+  "description": "URL Handler module for React Native",
+  "main": "URLHandler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/650Industries/react-native-url-handler.git"
+  },
+  "keywords": [
+    "url",
+    "urlhandler",
+    "react-native"
+  ],
+  "author": "James Ide <ide@sixfivezero.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/650Industries/react-native-url-handler/issues"
+  },
+  "homepage": "https://github.com/650Industries/react-native-url-handler#readme"
+}
