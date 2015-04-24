@@ -1,7 +1,6 @@
 /*
  * Copyright 2015-present 650 Industries. All rights reserved.
  *
- * @providesModule react-native-url-handler
  * @flow
  */
 'use strict';
@@ -44,7 +43,7 @@ var URLHandler = {
   openURL(targetURL: string) {
     // Parse the query string and have "//" denote the hostname
     var components = url.parse(targetURL, false, true);
-    if (components.protocol === 'nametag:') {
+    if (components.protocol === 'xxx:') {
       emitter.emit('request', url);
     } else {
       NTURLHandler.openURL(targetURL, () => {}, (error) => {
@@ -64,7 +63,7 @@ var URLHandler = {
   },
 };
 
-DeviceEventEmitter.addListener('NTURLNavigator.openURL', (event) => {
+DeviceEventEmitter.addListener('NTURLHandler.openURL', (event) => {
   var {url, sourceApplication, annotation} = event;
   if (sourceApplication != null) {
     var referrer = {sourceApplication, annotation};

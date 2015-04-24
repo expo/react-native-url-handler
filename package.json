@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/650Industries/react-native-url-handler/issues"
   },
-  "homepage": "https://github.com/650Industries/react-native-url-handler#readme"
+  "homepage": "https://github.com/650Industries/react-native-url-handler#readme",
+  "dependencies": {
+    "url": "^0.10.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.0.1",
+    "eslint": "^0.20.0"
+  }
 }

@@ -47,7 +47,7 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
 
 - (void)_dispatchOpenURLEvent:(NSNotification *)notification
 {
-    [self.bridge.eventDispatcher sendDeviceEventWithName:@"NTURLNavigator.openURL" body:notification.userInfo];
+    [self.bridge.eventDispatcher sendDeviceEventWithName:@"NTURLHandler.openURL" body:notification.userInfo];
 }
 
 #pragma mark - JavaScript
@@ -69,9 +69,9 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
 }
 
 RCT_REMAP_METHOD(openURL,
-                        openURLString:(NSString *)urlString
-                      successCallback:(RCTResponseSenderBlock)successCallback
-                        errorCallback:(RCTResponseSenderBlock)errorCallback)
+                 openURLString:(NSString *)urlString
+               successCallback:(RCTResponseSenderBlock)successCallback
+                 errorCallback:(RCTResponseSenderBlock)errorCallback)
 {
     NSURL *url = [NSURL URLWithString:urlString];
     if (!url) {
