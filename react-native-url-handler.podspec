@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.platform     = :ios, '7.0'
   s.requires_arc = true
-  s.authors      = 'James Ide <ide@sixfivezero.net>'
+  s.authors      = { 'James Ide' => 'ide@sixfivezero.net', 'Charlie Cheever' => 'ccheever@sixfivezero.net' }
   s.homepage     = 'https://github.com/650Industries/react-native-url-handler'
   s.source_files = 'ios/**/*.{h,m}'
 end
