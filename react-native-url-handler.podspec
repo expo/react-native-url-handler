@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "react-native-url-handler"
-  s.version          = "0.0.1"
+  s.version          = "0.0.2"
   s.summary          = "React Native URL Handler"
   s.license          = 'MIT'
   s.platform     = :ios, '7.0'
