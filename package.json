@@ -1,6 +1,6 @@
 {
   "name": "react-native-url-handler",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "URL Handler module for React Native",
   "main": "URLHandler.js",
   "scripts": {
@@ -27,5 +27,6 @@
   "devDependencies": {
     "babel-eslint": "^3.0.1",
     "eslint": "^0.20.0"
-  }
+  },
+  "nativePackage": true
 }
