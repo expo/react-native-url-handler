@@ -69,7 +69,7 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
     return constants;
 }
 
-- (NSSet *)_supportedURLSchemes
+- (NSArray *)_supportedURLSchemes
 {
     NSMutableSet *schemes = [NSMutableSet set];
     NSDictionary *info = [NSBundle mainBundle].infoDictionary;
@@ -78,7 +78,7 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
             [schemes addObject:scheme.lowercaseString];
         }
     }
-    return schemes;
+    return schemes.allObjects;
 }
 
 RCT_REMAP_METHOD(openURL,
