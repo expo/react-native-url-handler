@@ -46,15 +46,26 @@ var URLHandler = {
    * without a host are treated as in-app URLs.
    */
   openURL(targetURL: string) {
-    // Parse the query string and have "//" denote the hostname
-    var components = url.parse(targetURL, false, true);
-    if (components.protocol === 'xxx:') {
-      emitter.emit('request', url);
+    if (this.isInternalURL(targetURL)) {
+      emitter.emit('request', targetURL);
     } else {
       NTURLHandler.openURL(targetURL, () => {}, (error) => {
         console.error('Error opening URL: ' + error.stack);
       });
     }
+  },
+
+  /**
+   * Returns whether the given URL is an in-app URL or an external URL.
+   */
+  isInternalURL(targetURL: string): bool {
+    // Parse the query string and have "//" denote the hostname
+    var {protocol} = url.parse(targetURL, false, true);
+    if (!protocol) {
+      return true;
+    }
+    var scheme = protocol.substring(0, protocol.length - 1);
+    return this.schemes.indexOf(scheme) !== -1;
   },
 
   /**

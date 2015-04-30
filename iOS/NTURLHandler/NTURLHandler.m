@@ -74,7 +74,9 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
     NSMutableSet *schemes = [NSMutableSet set];
     NSDictionary *info = [NSBundle mainBundle].infoDictionary;
     for (NSDictionary *urlType in info[@"CFBundleURLTypes"]) {
-        [schemes addObjectsFromArray:urlType[@"CFBundleURLSchemes"]];
+        for (NSString *scheme in urlType[@"CFBundleURLSchemes"]) {
+            [schemes addObject:scheme.lowercaseString];
+        }
     }
     return schemes;
 }
