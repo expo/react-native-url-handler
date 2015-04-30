@@ -20,6 +20,11 @@ var emitter = new EventEmitter();
 
 var URLHandler = {
   /**
+   * The list of URL protocols handled by this app.
+   */
+  schemes: NTURLHandler.schemes,
+
+  /**
    * The URL that opens the settings for this app. It is defined on iOS 8 and
    * up.
    */

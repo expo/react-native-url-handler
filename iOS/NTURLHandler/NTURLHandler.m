@@ -56,6 +56,7 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
 {
     NSDictionary *launchOptions = self.bridge.launchOptions;
     NSMutableDictionary *constants = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"schemes": [self _supportedURLSchemes],
         @"initialURL": [launchOptions[UIApplicationLaunchOptionsURLKey] absoluteString] ?: [NSNull null],
         @"settingsURL": UIApplicationOpenSettingsURLString ?: [NSNull null],
     }];
@@ -66,6 +67,16 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
         };
     }
     return constants;
+}
+
+- (NSSet *)_supportedURLSchemes
+{
+    NSMutableSet *schemes = [NSMutableSet set];
+    NSDictionary *info = [NSBundle mainBundle].infoDictionary;
+    for (NSDictionary *urlType in info[@"CFBundleURLTypes"]) {
+        [schemes addObjectsFromArray:urlType[@"CFBundleURLSchemes"]];
+    }
+    return schemes;
 }
 
 RCT_REMAP_METHOD(openURL,
