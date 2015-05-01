@@ -34,7 +34,9 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
  */
 + (BOOL)openInternalURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"url": url}];
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{
+      @"url": url.absoluteString,
+    }];
     if (sourceApplication) {
         userInfo[@"sourceApplication"] = sourceApplication;
     }
