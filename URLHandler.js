@@ -39,7 +39,7 @@ var URLHandler = {
    * Referrer information about the URL that launched this app if it was
    * launched from a URL.
    */
-   initialReferrer: NTURLHandler.initialReferrer,
+  initialReferrer: NTURLHandler.initialReferrer,
 
   /**
    * Opens the given URL. The URL may be an external URL or an in-app URL. URLs

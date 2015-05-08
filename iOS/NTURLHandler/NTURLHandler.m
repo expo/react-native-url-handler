@@ -2,6 +2,8 @@
 
 #import "NTURLHandler.h"
 
+@import UIKit;
+
 @implementation NTURLHandler
 
 RCT_EXPORT_MODULE()
@@ -62,11 +64,15 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
         @"initialURL": [launchOptions[UIApplicationLaunchOptionsURLKey] absoluteString] ?: [NSNull null],
         @"settingsURL": UIApplicationOpenSettingsURLString ?: [NSNull null],
     }];
+
     if (launchOptions[UIApplicationLaunchOptionsSourceApplicationKey]) {
-        constants[@"initialReferrer"] = @{
+        NSMutableDictionary *referrer = [NSMutableDictionary dictionaryWithDictionary:@{
             @"sourceApplication": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey],
-            @"annotation": launchOptions[UIApplicationLaunchOptionsAnnotationKey],
-        };
+        }];
+        if (launchOptions[UIApplicationLaunchOptionsAnnotationKey]) {
+            referrer[@"annotation"] = launchOptions[UIApplicationLaunchOptionsAnnotationKey];
+        }
+        constants[@"initialReferrer"] = referrer;
     }
     return constants;
 }
