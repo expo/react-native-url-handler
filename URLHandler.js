@@ -64,6 +64,10 @@ var URLHandler = {
     if (!protocol) {
       return true;
     }
+    return false; // TODO: Come up with a better way to handle this.
+    // We want a message passing channel between different instances of the JavaScript
+    // The problem here is that an event is fired within the inner Frame, but the browser
+    // can't repond to events fired within the frame in JavaScript
     var scheme = protocol.substring(0, protocol.length - 1);
     return this.schemes.indexOf(scheme) !== -1;
   },
