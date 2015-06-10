@@ -47,10 +47,21 @@ let URLHandler = {
     if (this.isInternalURL(targetURL)) {
       emitter.emit('url', { url: targetURL });
     } else {
-      EXURLHandler.openURL(targetURL, () => {}, (error) => {
-        console.error('Error opening URL: ' + error.stack);
+      EXURLHandler.openURLAsync(targetURL).catch(error => {
+        console.error('Error opening URL: ' + error.message);
       });
     }
+  },
+
+  /**
+   * Returns whether the OS can open the given URL. This method returns false if
+   * no app on the device can open the provided URL.
+   */
+  canOpenURLAsync(targetURL: string) {
+    if (this.isInternalURL(targetURL)) {
+      return Promise.resolve(true);
+    }
+    return EXURLHandler.canOpenURLAsync(targetURL);
   },
 
   /**

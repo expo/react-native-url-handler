@@ -87,21 +87,25 @@ static NSString * const EXURLHandlerOpenURLNotification = @"EXURLHandlerOpenURL"
     return schemes.allObjects;
 }
 
-RCT_REMAP_METHOD(openURL,
-                 openURLString:(NSString *)urlString
-               successCallback:(RCTResponseSenderBlock)successCallback
-                 errorCallback:(RCTResponseSenderBlock)errorCallback)
+RCT_REMAP_METHOD(openURLAsync,
+                 openURL:(NSURL *)url
+                resolver:(RCTPromiseResolveBlock)resolve
+                rejecter:(RCTPromiseRejectBlock)reject)
 {
-    NSURL *url = [NSURL URLWithString:urlString];
-    if (!url) {
-        NSString *message = [NSString stringWithFormat:@"Could not create a URL from \"%@\"", urlString];
-        errorCallback(@[message]);
-        return;
-    }
-
     dispatch_async(dispatch_get_main_queue(), ^{
         BOOL opened = [[UIApplication sharedApplication] openURL:url];
-        successCallback(@[@(opened)]);
+        resolve(@(opened));
+    });
+}
+
+RCT_REMAP_METHOD(canOpenURLAsync,
+                 canOpenURL:(NSURL *)url
+                   resolver:(RCTPromiseResolveBlock)resolve
+                   rejecter:(RCTPromiseRejectBlock)reject)
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BOOL canOpen = [[UIApplication sharedApplication] canOpenURL:url];
+        resolve(@(canOpen));
     });
 }
 
