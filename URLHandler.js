@@ -3,20 +3,20 @@
  */
 'use strict';
 
-var EventEmitter = require('EventEmitter');
-var React = require('react-native');
-var {
+let EventEmitter = require('eventemitter3');
+let React = require('react-native');
+let {
   DeviceEventEmitter,
   NativeModules: {
     EXURLHandler,
   },
 } = React;
 
-var url = require('url');
+let url = require('url');
 
-var emitter = new EventEmitter();
+let emitter = new EventEmitter();
 
-var URLHandler = {
+let URLHandler = {
   /**
    * The list of URL protocols handled by this app.
    */
@@ -45,7 +45,7 @@ var URLHandler = {
    */
   openURL(targetURL: string) {
     if (this.isInternalURL(targetURL)) {
-      emitter.emit('request', targetURL);
+      emitter.emit('url', { url: targetURL });
     } else {
       EXURLHandler.openURL(targetURL, () => {}, (error) => {
         console.error('Error opening URL: ' + error.stack);
@@ -58,7 +58,7 @@ var URLHandler = {
    */
   isInternalURL(targetURL: string): bool {
     // Parse the query string and have "//" denote the hostname
-    var {protocol} = url.parse(targetURL, false, true);
+    let { protocol } = url.parse(targetURL, false, true);
     if (!protocol) {
       return true;
     }
@@ -66,27 +66,36 @@ var URLHandler = {
     // We want a message passing channel between different instances of the JavaScript
     // The problem here is that an event is fired within the inner Frame, but the browser
     // can't repond to events fired within the frame in JavaScript
-    var scheme = protocol.substring(0, protocol.length - 1);
+    let scheme = protocol.substring(0, protocol.length - 1);
     return this.schemes.indexOf(scheme) !== -1;
   },
 
   /**
-   * Adds a listener that receives an object with URL information when the app
-   * has been instructed to open a URL. See the Request type.
+   * Adds a listener for the specified event. Supported events are:
    *
-   * This method returns a subscription to later remove the listener.
+   * url: the app has been instructed to open a URL
+   *   Event:
+   *     url: string
+   *     referrer?: Referrer
    */
-  addListener(listener: (url: string, referrer: ?Referrer) => void) {
-    return emitter.addListener('request', listener);
+  addEventListener(type: string, listener: Function) {
+    emitter.addListener(type, listener);
   },
+
+  /**
+   * Removes a listener for the specified event.
+   */
+  removeEventListener(type: string, listener: Function) {
+    emitter.removeListener(type, listener);
+  }
 };
 
 DeviceEventEmitter.addListener('EXURLHandler.openURL', (event) => {
-  var {url, sourceApplication, annotation} = event;
+  let { url, sourceApplication, annotation } = event;
   if (sourceApplication != null) {
-    var referrer = {sourceApplication, annotation};
+    var referrer: Referrer = { sourceApplication, annotation };
   }
-  emitter.emit('request', url, referrer);
+  emitter.emit('url', { url, referrer });
 });
 
 type Referrer = {
