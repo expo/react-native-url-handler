@@ -1,6 +1,6 @@
 {
   "name": "react-native-url-handler",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Navigate to external URLs, handle in-app URLs, and access system URLs",
   "main": "URLHandler.js",
   "scripts": {
@@ -21,9 +21,6 @@
     "url": "https://github.com/exponentjs/react-native-url-handler/issues"
   },
   "homepage": "https://github.com/exponentjs/react-native-url-handler#readme",
-  "peerDependencies": {
-    "react-native": ">=0.7.0"
-  },
   "dependencies": {
     "eventemitter3": "^1.1.0",
     "url": "^0.10.3"
