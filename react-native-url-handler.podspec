@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'react-native-url-handler'
-  s.version      = '0.1.0'
+  s.version      = '0.2.0'
   s.summary      = 'Navigate to external URLs, handle in-app URLs, and access system URLs'
   s.license      = 'MIT'
   s.platform     = :ios, '7.0'

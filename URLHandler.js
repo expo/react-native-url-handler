@@ -1,6 +1,4 @@
-/*
- * Copyright 2015-present 650 Industries. All rights reserved.
- *
+/**
  * @flow
  */
 'use strict';
@@ -10,7 +8,7 @@ var React = require('react-native');
 var {
   DeviceEventEmitter,
   NativeModules: {
-    NTURLHandler,
+    EXURLHandler,
   },
 } = React;
 
@@ -22,24 +20,24 @@ var URLHandler = {
   /**
    * The list of URL protocols handled by this app.
    */
-  schemes: NTURLHandler.schemes,
+  schemes: EXURLHandler.schemes,
 
   /**
    * The URL that opens the settings for this app. It is defined on iOS 8 and
    * up.
    */
-  settingsURL: NTURLHandler.settingsURL,
+  settingsURL: EXURLHandler.settingsURL,
 
   /**
    * The URL that launched this app if it was launched from a URL.
    */
-  initialURL: NTURLHandler.initialURL,
+  initialURL: EXURLHandler.initialURL,
 
   /**
    * Referrer information about the URL that launched this app if it was
    * launched from a URL.
    */
-  initialReferrer: NTURLHandler.initialReferrer,
+  initialReferrer: EXURLHandler.initialReferrer,
 
   /**
    * Opens the given URL. The URL may be an external URL or an in-app URL. URLs
@@ -49,7 +47,7 @@ var URLHandler = {
     if (this.isInternalURL(targetURL)) {
       emitter.emit('request', targetURL);
     } else {
-      NTURLHandler.openURL(targetURL, () => {}, (error) => {
+      EXURLHandler.openURL(targetURL, () => {}, (error) => {
         console.error('Error opening URL: ' + error.stack);
       });
     }
@@ -83,7 +81,7 @@ var URLHandler = {
   },
 };
 
-DeviceEventEmitter.addListener('NTURLHandler.openURL', (event) => {
+DeviceEventEmitter.addListener('EXURLHandler.openURL', (event) => {
   var {url, sourceApplication, annotation} = event;
   if (sourceApplication != null) {
     var referrer = {sourceApplication, annotation};

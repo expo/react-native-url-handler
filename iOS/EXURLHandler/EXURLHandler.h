@@ -1,10 +1,8 @@
-// Copyright 2015-present 650 Industries. All rights reserved.
-
 @import Foundation;
 
 #import <React/React.h>
 
-@interface NTURLHandler : NSObject <RCTBridgeModule>
+@interface EXURLHandler : NSObject <RCTBridgeModule>
 
 + (BOOL)openInternalURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 

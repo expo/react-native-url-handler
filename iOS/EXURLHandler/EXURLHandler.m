@@ -1,14 +1,12 @@
-// Copyright 2015-present 650 Industries. All rights reserved.
-
-#import "NTURLHandler.h"
+#import "EXURLHandler.h"
 
 @import UIKit;
 
-@implementation NTURLHandler
+@implementation EXURLHandler
 
 RCT_EXPORT_MODULE()
 
-static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL";
+static NSString * const EXURLHandlerOpenURLNotification = @"EXURLHandlerOpenURL";
 
 @synthesize bridge = _bridge;
 
@@ -17,7 +15,7 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
     if (self = [super init]) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(_dispatchOpenURLEvent:)
-                                                     name:NTURLHandlerOpenURLNotification
+                                                     name:EXURLHandlerOpenURLNotification
                                                    object:nil];
     }
     return self;
@@ -45,13 +43,13 @@ static NSString * const NTURLHandlerOpenURLNotification = @"NTURLHandlerOpenURL"
     if (annotation) {
         userInfo[@"annotation"] = annotation;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:NTURLHandlerOpenURLNotification object:self userInfo:userInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:EXURLHandlerOpenURLNotification object:self userInfo:userInfo];
     return YES;
 }
 
 - (void)_dispatchOpenURLEvent:(NSNotification *)notification
 {
-    [self.bridge.eventDispatcher sendDeviceEventWithName:@"NTURLHandler.openURL" body:notification.userInfo];
+    [self.bridge.eventDispatcher sendDeviceEventWithName:@"EXURLHandler.openURL" body:notification.userInfo];
 }
 
 #pragma mark - JavaScript
