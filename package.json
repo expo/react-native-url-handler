@@ -8,25 +8,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/650Industries/react-native-url-handler.git"
+    "url": "git+https://github.com/exponentjs/react-native-url-handler.git"
   },
   "keywords": [
     "url",
     "urlhandler",
     "react-native"
   ],
-  "author": "James Ide <ide@sixfivezero.net>",
+  "author": "James Ide <ide@exp.host>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/650Industries/react-native-url-handler/issues"
+    "url": "https://github.com/exponentjs/react-native-url-handler/issues"
   },
-  "homepage": "https://github.com/650Industries/react-native-url-handler#readme",
+  "homepage": "https://github.com/exponentjs/react-native-url-handler#readme",
+  "peerDependencies": {
+    "react-native": ">=0.7.0"
+  },
   "dependencies": {
     "url": "^0.10.3"
   },
   "devDependencies": {
-    "babel-eslint": "^3.0.1",
-    "eslint": "^0.20.0"
+    "babel-eslint": "^3.1.15",
+    "eslint": "^0.22.1"
   },
   "nativePackage": true
 }
