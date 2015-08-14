@@ -1,8 +1,8 @@
 {
   "name": "react-native-url-handler",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Navigate to external URLs, handle in-app URLs, and access system URLs",
-  "main": "URLHandler.js",
+  "main": "UrlHandler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
