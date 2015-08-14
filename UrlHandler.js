@@ -16,7 +16,7 @@ let url = require('url');
 
 let emitter = new EventEmitter();
 
-let URLHandler = {
+let UrlHandler = {
   /**
    * The list of URL protocols handled by this app.
    */
@@ -26,12 +26,12 @@ let URLHandler = {
    * The URL that opens the settings for this app. It is defined on iOS 8 and
    * up.
    */
-  settingsURL: EXURLHandler.settingsURL,
+  settingsUrl: EXURLHandler.settingsURL,
 
   /**
    * The URL that launched this app if it was launched from a URL.
    */
-  initialURL: EXURLHandler.initialURL,
+  initialUrl: EXURLHandler.initialURL,
 
   /**
    * Referrer information about the URL that launched this app if it was
@@ -43,11 +43,11 @@ let URLHandler = {
    * Opens the given URL. The URL may be an external URL or an in-app URL. URLs
    * without a host are treated as in-app URLs.
    */
-  openURL(targetURL: string) {
-    if (this.isInternalURL(targetURL)) {
-      emitter.emit('url', { url: targetURL });
+  openUrl(targetUrl: string) {
+    if (this.isInternalUrl(targetUrl)) {
+      emitter.emit('url', { url: targetUrl });
     } else {
-      EXURLHandler.openURLAsync(targetURL).catch(error => {
+      EXURLHandler.openURLAsync(targetUrl).catch(error => {
         console.error('Error opening URL: ' + error.message);
       });
     }
@@ -57,19 +57,19 @@ let URLHandler = {
    * Returns whether the OS can open the given URL. This method returns false if
    * no app on the device can open the provided URL.
    */
-  canOpenURLAsync(targetURL: string) {
-    if (this.isInternalURL(targetURL)) {
+  canOpenUrlAsync(targetUrl: string) {
+    if (this.isInternalUrl(targetUrl)) {
       return Promise.resolve(true);
     }
-    return EXURLHandler.canOpenURLAsync(targetURL);
+    return EXURLHandler.canOpenURLAsync(targetUrl);
   },
 
   /**
    * Returns whether the given URL is an in-app URL or an external URL.
    */
-  isInternalURL(targetURL: string): bool {
+  isInternalUrl(targetUrl: string): bool {
     // Parse the query string and have "//" denote the hostname
-    let { protocol } = url.parse(targetURL, false, true);
+    let { protocol } = url.parse(targetUrl, false, true);
     if (!protocol) {
       return true;
     }
@@ -114,4 +114,4 @@ type Referrer = {
   annotation?: any;
 };
 
-module.exports = URLHandler;
+module.exports = UrlHandler;
