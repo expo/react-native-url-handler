@@ -23,11 +23,11 @@
   "homepage": "https://github.com/exponentjs/react-native-url-handler#readme",
   "dependencies": {
     "eventemitter3": "^1.1.1",
-    "url": "^0.10.3"
+    "url": "^0.11.0"
   },
   "devDependencies": {
-    "babel-eslint": "^4.0.5",
-    "eslint": "^1.1.0"
+    "babel-eslint": "^4.1.0",
+    "eslint": "^1.2.1"
   },
   "nativePackage": true
 }
