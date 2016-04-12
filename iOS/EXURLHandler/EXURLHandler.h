@@ -1,6 +1,6 @@
 @import Foundation;
 
-#import <React/React.h>
+#import "RCTBridgeModule.h"
 
 @interface EXURLHandler : NSObject <RCTBridgeModule>
 

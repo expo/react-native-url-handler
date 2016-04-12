@@ -1,4 +1,5 @@
 #import "EXURLHandler.h"
+#import "RCTEventDispatcher.h"
 
 @import UIKit;
 
